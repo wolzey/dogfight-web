@@ -1,0 +1,25 @@
+{
+  "name": "dogfight-web",
+  "version": "1.0.0",
+  "description": "Dogfight using phaser and socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolzethan/dogfight-web.git"
+  },
+  "keywords": [
+    "dogfight",
+    "socket",
+    "realtime",
+    "game"
+  ],
+  "author": "Ethan Wolz <ethan@creadiv.io>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wolzethan/dogfight-web/issues"
+  },
+  "homepage": "https://github.com/wolzethan/dogfight-web#readme"
+}
