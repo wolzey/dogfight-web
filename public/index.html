@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dogfight</title>
+    <script src="js/phaser.min.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/jet.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/playerJet.js"></script>
+  </head>
+  <body>
+    <script>
+      (function() {
+        var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, null);
+
+        game.state.add('Game', Game);
+        game.state.start('Game');
+      })();
+    </script>
+  </body>
+</html>
