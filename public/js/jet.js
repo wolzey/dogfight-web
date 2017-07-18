@@ -4,6 +4,7 @@ Jet = function(game, spriteKey, x, y) {
   if (!this.game.jets) {
     this.game.jets = [];
   }
+  
   this.game.jets.push(this);
   this.debug = false;
   this.spriteKey = spriteKey;

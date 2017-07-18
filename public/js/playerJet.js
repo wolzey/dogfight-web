@@ -34,20 +34,19 @@ PlayerJet.prototype.update = function() {
   let headX = this.jet.body.x;
   let headY = this.jet.body.y;
   let angle = (180*Math.atan2(mousePosX-headX,mousePosY-headY)/Math.PI);
+  let self = this;
+  this.game.socket.emit('updateAngle', {id:self.game.id, x:mousePosX, y:mousePosY, r:angle})
   if (angle > 0) {
     angle = 180-angle;
   } else {
     angle = -180-angle;
   }
+
   let dif = this.jet.body.angle - angle;
   this.jet.body.setZeroRotation();
   // Allow arrow keys to be used
 
-  if (this.cursors.left.isDown) {
-    this.jet.body.rotateLeft(this.rotationSpeed);
-  } else if (this.cursors.right.isDown) {
-    this.jet.body.rotateRight(this.rotationSpeed);
-  } else if (dif < 0 && dif > -180 || dif > 180) {
+  if (dif < 0 && dif > -180 || dif > 180) {
     this.jet.body.rotateRight(this.rotationSpeed)
   } else if (dif > 0 && dif < 180 || dif < -180) {
     this.jet.body.rotateLeft(this.rotationSpeed);
