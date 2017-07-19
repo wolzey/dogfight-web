@@ -11,6 +11,7 @@ Game.prototype = {
         //load assets
       this.game.load.image('jet','assets/jet2.png');
     	this.game.load.image('background', 'assets/tile.png');
+      this.game.load.image('missile', 'assets/missile.png');
     },
     create: function() {
         let width = this.game.width;
