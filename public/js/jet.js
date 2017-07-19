@@ -1,10 +1,5 @@
 Jet = function(game, spriteKey, x, y) {
   this.game = game;
-
-  if (!this.game.jets) {
-    this.game.jets = [];
-  }
-  this.game.jets.push(this);
   this.debug = false;
   this.spriteKey = spriteKey;
 
@@ -16,6 +11,7 @@ Jet = function(game, spriteKey, x, y) {
   this.rotationSpeed = 40;
 
   this.jet = this.game.add.sprite(x, y, this.spriteKey);
+  this.jet.tint = Math.random() * 0xffffff;
   this.game.physics.p2.enable(this.jet, this.debug)
   this.jet.body.collides([]);
   this.jet.body.kinematic = true

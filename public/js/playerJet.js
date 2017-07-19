@@ -25,7 +25,7 @@ PlayerJet.prototype.spaceKeyUp = function () {
 }
 
 PlayerJet.prototype.tempUpdate = PlayerJet.prototype.update;
-PlayerJet.prototype.update = function() {
+PlayerJet.prototype.update = function(x,y,a) {
   // find angle that the head needs to rotate
   // through in order to face the mouse
 
@@ -39,6 +39,15 @@ PlayerJet.prototype.update = function() {
   } else {
     angle = -180-angle;
   }
+
+  Client.socket.emit('playerMove', {
+    x: headX,
+    y: headY,
+    mouseX: mousePosX,
+    mouseY: mousePosY,
+    angle: angle
+  })
+
   let dif = this.jet.body.angle - angle;
   this.jet.body.setZeroRotation();
   // Allow arrow keys to be used
