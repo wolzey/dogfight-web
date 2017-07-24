@@ -12,11 +12,23 @@ Jet = function(game, spriteKey, x, y) {
 
   this.jet = this.game.add.sprite(x, y, this.spriteKey);
   this.jet.tint = Math.random() * 0xffffff;
+
   this.game.physics.p2.enable(this.jet, this.debug)
-  this.jet.body.collides([]);
+  this.game.physics.p2.setImpactEvents(true)
   this.jet.body.kinematic = true
 
   this.jet.scale.setTo(this.scale)
+
+
+  this.weapon = this.game.add.weapon(3, 'missile');
+  this.weapon.tint = 0xffffff
+  this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+  this.weapon.bulletSpeed = 400;
+  this.weapon.fireRate = 60;
+  this.weapon.trackSprite(this.jet, 0, 0)
+
+  this.jet.body.setCollisionGroup(jetGroup);
+  this.jet.body.collides(bulletGroup, playerHit, this);
 
   // Initialize collision group
   this.collisionGroup = this.game.physics.p2.createCollisionGroup();
@@ -31,6 +43,11 @@ Jet = function(game, spriteKey, x, y) {
 
   this.onDestroyedCallbacks = [];
   this.onDestroyedContexts  = [];
+
+  function playerHit(body1, body2) {
+    body1.kill()
+    body2.kill()
+  }
 }
 
 Jet.prototype = {

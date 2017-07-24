@@ -28,3 +28,9 @@ EnemyJet.prototype.updatePosition = function(data) {
     this.jet.body.rotateLeft(this.rotationSpeed);
   }
 }
+
+EnemyJet.prototype.shoot = function (data) {
+  this.weapon.bulletAngleOffset = 225;
+  this.weapon.fireAngle = data.a;
+  this.weapon.fire()
+}

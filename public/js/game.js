@@ -40,6 +40,12 @@ Game.prototype = {
           addNewEnemy(data.id, data.x, data.y)
         })
 
+        Client.socket.on('enemyShoot', function (data){
+          if(Game.enemyMap[data.id]) {
+            Game.enemyMap[data.id].shoot(data)
+          }
+        })
+
         Client.socket.on('enemyMove', function(data) {
           if (Game.enemyMap[data.id]) {
             Game.enemyMap[data.id].updatePosition(data)
@@ -54,6 +60,9 @@ Game.prototype = {
             }
           }
         })
+
+        jetGroup = this.game.physics.p2.createCollisionGroup();
+        bulletGroup = this.game.physics.p2.createCollisionGroup();
 
         Client.socket.on('remove', removePlayer);
 

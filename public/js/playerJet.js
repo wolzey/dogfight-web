@@ -4,13 +4,6 @@ PlayerJet = function (game, spriteKey, x, y) {
 
   // handle space key to go faster!
 
-  weapon = this.game.add.weapon(3, 'missile');
-  weapon.tint = 0xffffff
-  weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-  weapon.bulletSpeed = 400;
-  weapon.fireRate = 60;
-  weapon.trackSprite(this.jet, 0, 0)
-
   let fKey = this.game.input.keyboard.addKey(Phaser.Keyboard.F);
   let spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   let self = this;
@@ -34,9 +27,16 @@ PlayerJet.prototype.fKeyDown = function () {
   let my = this.game.input.activePointer.worldY;
   let bx = this.jet.body.x;
   let by = this.jet.body.y;
-  weapon.bulletAngleOffset = 225;
-  weapon.fireAngle = angleOfMovement(mx, my, bx, by) - 90;
-  weapon.fire();
+  this.weapon.bulletAngleOffset = 225;
+  this.weapon.fireAngle = angleOfMovement(mx, my, bx, by) - 90;
+
+  Client.socket.emit('playerShoot', {
+    x: this.jet.body.x,
+    y: this.jet.body.y,
+    a: angleOfMovement(mx, my, bx, by) - 90
+  })
+
+  this.weapon.fire();
 }
 
 PlayerJet.prototype.spaceKeyDown = function () {

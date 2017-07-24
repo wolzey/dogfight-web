@@ -8,12 +8,24 @@ module.exports = function (io) {
       socket.player = {
         id: playerId++,
         x: randomInt(100, 400),
-        y: randomInt(100, 400)
+        y: randomInt(100, 400),
+        bullets: []
       }
 
       socket.emit('spawn', socket.player)
       socket.emit('allplayers', getAllPlayers())
       socket.broadcast.emit('newplayer', socket.player)
+    })
+
+    socket.on('playerShoot', function(data) {
+      if (socket.player.bullets.length >= 3) {
+        socket.player.bullets = socket.player.bullets.pop()
+        socket.player.bullets.push(data)
+      }
+
+      data.id = socket.player.id
+
+      socket.broadcast.emit('enemyShoot', data)
     })
 
     socket.on('playerMove', function(data) {
