@@ -1,0 +1,53 @@
+.name-wrapper {
+    margin: 100px auto;
+    text-align: center;
+    max-width: 500px;
+    background: #FFF;
+    border-radius: 4px;
+    padding: 50px;
+    box-shadow: 2px 2px 2px #888888;
+}
+
+.dogfighter-button {
+    width: 50%;
+    border-radius: 25px;
+    margin-top: 50px;
+    font-size: 25px;
+    background: #3FC7EC;
+    height: 50px;
+    color: white;
+    outline: none;
+    border: none;
+    transition: 0.5s ease all;
+}
+
+.dogfighter-button:hover {
+    transform: scale(1.1, 1.1)
+}
+
+body {
+    font-family: sans-serif;
+    background: #3FC7EC;
+}
+
+.name-wrapper input {
+    margin-top: 10px;
+    width: 100%;
+    height: 46px;
+    border: none;
+    text-align: center;
+    font-size: 30px;
+    color: gray;
+}
+
+.name-wrapper input:focus {
+    outline: none;
+}
+
+.name-wrapper label {
+    float: left
+}
+
+h2 {
+    font-size: 50px;
+}

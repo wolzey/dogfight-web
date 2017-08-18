@@ -4,8 +4,9 @@ module.exports = function (io) {
     // Assign random position to new player
     // Need to send back this location to the socket to assign to the game
     // Send all players to the socket
-    socket.on('join', function() {
+    socket.on('join', function(data) {
       socket.player = {
+        name: data.name,
         id: playerId++,
         x: randomInt(100, 400),
         y: randomInt(100, 400),

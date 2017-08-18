@@ -1,5 +1,5 @@
-PlayerJet = function (game, spriteKey, x, y) {
-  Jet.call(this, game, spriteKey, x, y);
+PlayerJet = function (game, spriteKey, x, y, name) {
+  Jet.call(this, game, spriteKey, x, y, name);
   this.cursors = game.input.keyboard.createCursorKeys();
 
   // handle space key to go faster!
@@ -75,11 +75,12 @@ PlayerJet.prototype.update = function(x,y,a) {
   this.jet.body.setZeroRotation();
   // Allow arrow keys to be used
 
-  if (this.cursors.left.isDown) {
-    this.jet.body.rotateLeft(this.rotationSpeed);
-  } else if (this.cursors.right.isDown) {
-    this.jet.body.rotateRight(this.rotationSpeed);
-  } else if (dif < 0 && dif > -180 || dif > 180) {
+  // if (this.cursors.left.isDown) {
+  //   this.jet.body.rotateLeft(this.rotationSpeed);
+  // } else if (this.cursors.right.isDown) {
+  //   this.jet.body.rotateRight(this.rotationSpeed);
+  // } else
+  if (dif < 0 && dif > -180 || dif > 180) {
     this.jet.body.rotateRight(this.rotationSpeed)
   } else if (dif > 0 && dif < 180 || dif < -180) {
     this.jet.body.rotateLeft(this.rotationSpeed);

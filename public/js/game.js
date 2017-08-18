@@ -32,12 +32,11 @@ Game.prototype = {
         Client.askNewPlayer()
 
         Client.socket.on('spawn', function(data){
-          addNewPlayer(data.id, data.x, data.y)
+          addNewPlayer(data.id, data.x, data.y, data.name)
         })
 
         Client.socket.on('newplayer', function(data){
-          console.log('NEW PLAYER', data);
-          addNewEnemy(data.id, data.x, data.y)
+          addNewEnemy(data.id, data.x, data.y, data.name)
         })
 
         Client.socket.on('enemyShoot', function (data){
@@ -53,10 +52,9 @@ Game.prototype = {
         })
 
         Client.socket.on('allplayers', function(data){
-          console.log('NEW PLAYERS ALL', Game.playerMap)
           for (var i = 0; i < data.length; i++) {
             if (!Game.playerMap[data[i].id]) {
-              addNewEnemy(data[i].id, data[i].x, data[i].y)
+              addNewEnemy(data[i].id, data[i].x, data[i].y, data[i].name)
             }
           }
         })
@@ -67,8 +65,8 @@ Game.prototype = {
         Client.socket.on('remove', removePlayer);
 
         function removePlayer(id) {
-          console.log('DELETING PLAYER!')
           if (Game.enemyMap[id]) {
+            Game.enemyMap[id].text.destroy()
             Game.enemyMap[id].jet.destroy()
             delete Game.enemyMap[id]
           } else if (Game.playerMap[id]) {
@@ -77,13 +75,12 @@ Game.prototype = {
           }
         }
 
-        function addNewEnemy(id, x, y) {
-          console.log("Adding enemy")
-          Game.enemyMap[id] = new EnemyJet(self.game, 'jet', x, y)
+        function addNewEnemy(id, x, y, name) {
+          Game.enemyMap[id] = new EnemyJet(self.game, 'jet', x, y, name)
         }
 
-        function addNewPlayer(id, x, y) {
-          let jet = new PlayerJet(self.game, 'jet', x, y)
+        function addNewPlayer(id, x, y, name) {
+          let jet = new PlayerJet(self.game, 'jet', x, y, name)
           Game.selfId = id
           Game.playerMap[id] = jet
           self.game.camera.follow(jet.jet)
