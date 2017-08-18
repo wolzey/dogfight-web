@@ -3,5 +3,5 @@ var Client = {};
 Client.socket = io();
 
 Client.askNewPlayer = function(){
-  Client.socket.emit('join')
+  Client.socket.emit('join', { name : this.name })
 }

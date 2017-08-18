@@ -11,15 +11,48 @@
     <script src="js/client.js"></script>
     <script src="js/playerJet.js"></script>
     <script src="js/enemyJet.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
+    <div>
+      <div class="name-wrapper" id="get-name">
+        <div class="name-header">
+          <h2>Dogfighter</h2>
+        </div>
+        <div class="name-body">
+          <form>
+            <div class="form-group">
+              <input id="user_name" class="form-control dogfight-input" placeholder="Enter your name..." required />
+            </div>
+            <div class="button-group">
+              <button type="submit" class="dogfighter-button" id="fight">Fight!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <script>
-      (function() {
+
+      var fightButton = document.getElementById('fight')
+      fightButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('user_name').value;
+
+        if (name) {
+          document.getElementById('get-name').style.display = "none";
+          Client.name = name;
+          startGame(name)
+        } else {
+          alert('You need to choose a name')
+        }
+      })
+
+      function startGame(name) {
         var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, null);
 
         game.state.add('Game', Game);
         game.state.start('Game');
-      })();
+      }
     </script>
   </body>
 </html>

@@ -1,12 +1,16 @@
-Jet = function(game, spriteKey, x, y) {
+Jet = function(game, spriteKey, x, y, name) {
   this.game = game;
   this.debug = false;
   this.spriteKey = spriteKey;
+  var style = { font: "15px Arial", fill: "#000", align: "center" };
+
+  this.text = this.game.add.text(0, 0, name, style);
+  this.text.anchor.set(0.5);
 
   // Quantities that can be changed
   this.scale = 0.6;
-  this.fastSpeed = 200;
-  this.slowSpeed = 130;
+  this.fastSpeed = 300;
+  this.slowSpeed = 180;
   this.speed = this.slowSpeed;
   this.rotationSpeed = 40;
 
@@ -19,8 +23,7 @@ Jet = function(game, spriteKey, x, y) {
 
   this.jet.scale.setTo(this.scale)
 
-
-  this.weapon = this.game.add.weapon(3, 'missile');
+  this.weapon = this.game.add.weapon(2, 'missile');
   this.weapon.tint = 0xffffff
   this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
   this.weapon.bulletSpeed = 400;
@@ -53,6 +56,8 @@ Jet = function(game, spriteKey, x, y) {
 Jet.prototype = {
   update: function() {
     let speed = this.speed;
+    this.text.x = this.jet.body.x;
+    this.text.y = this.jet.body.y + 40;
     this.jet.body.moveForward(speed);
   },
 

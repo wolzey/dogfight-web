@@ -1,5 +1,5 @@
-EnemyJet = function (game, spriteKey, x, y) {
-  Jet.call(this, game, spriteKey, x, y)
+EnemyJet = function (game, spriteKey, x, y, name) {
+  Jet.call(this, game, spriteKey, x, y, name)
 }
 
 EnemyJet.prototype = Object.create(Jet.prototype)
