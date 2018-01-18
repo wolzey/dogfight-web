@@ -55,7 +55,7 @@ Jet = function(game, spriteKey, x, y, name) {
 
 Jet.prototype = {
   update: function() {
-    let speed = this.speed;
+    let speed   = this.speed;
     this.text.x = this.jet.body.x;
     this.text.y = this.jet.body.y + 40;
     this.jet.body.moveForward(speed);
